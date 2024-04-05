@@ -1,72 +1,59 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
-  final Function addTx;
-
-  NewTransaction(this.addTx);
+  final Function addNewTx;
+  NewTransaction(this.addNewTx);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleController = TextEditingController();
+  final titlecontroller = TextEditingController();
 
-  final amountController = TextEditingController();
-
-  void submitData() {
-    final enteredTitle = titleController.text;
-    final enteredAmount = double.parse(amountController.text);
-
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
-      return;
-    }
-    widget.addTx(
-      titleController.text,
-      double.parse(amountController.text),
-    );
-    Navigator.of(context).pop();
-  }
+  final amountcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
       child: Container(
         padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Title'),
-              // onChanged: (value) {
-
-              // },
-              controller: titleController,
-              onSubmitted: (_) => submitData(),
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: 'amount'),
-              // onChanged: (value) {
-              //   amountInput = value;
-              // },
-              controller: amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
-            ),
-            TextButton(
-              // onPressed: () {
-              //   addTx(
-              //     titleController.text,
-              //     double.parse(amountController.text),
-              //   );
-              // },
-              onPressed: () => submitData(),
-              child: Text('Add Transaction'),
-            )
-          ],
-        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          TextField(
+            decoration: InputDecoration(labelText: 'title'),
+            controller: titlecontroller,
+            onSubmitted: (value) {
+              widget.addNewTx(
+                  titlecontroller.text, double.parse(amountcontroller.text));
+              Navigator.of(context).pop();
+            },
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'amount'),
+            controller: amountcontroller,
+            keyboardType: TextInputType.number,
+            onSubmitted: (value) {
+              if (titlecontroller.text.isEmpty ||
+                  double.parse(amountcontroller.text) <= 0) {
+                return;
+              }
+              widget.addNewTx(
+                  titlecontroller.text, double.parse(amountcontroller.text));
+                  Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+              onPressed: () {
+                if (titlecontroller.text.isEmpty ||
+                    double.parse(amountcontroller.text) <= 0) {
+                  return;
+                }
+                widget.addNewTx(
+                    titlecontroller.text, double.parse(amountcontroller.text));
+                    Navigator.of(context).pop();
+              },
+              child: Text('add tranaction')),
+        ]),
       ),
     );
   }
