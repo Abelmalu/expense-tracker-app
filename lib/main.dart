@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Expense Tracker',
       theme: ThemeData(
         primarySwatch: Colors.purple,
+        fontFamily: 'Quicksand',
       ),
       home: MyHomePage(),
     );
@@ -29,9 +30,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTranactions = [
-    Transaction(id: 't1', title: 'shoes', amount: 22.58, date: DateTime.now()),
-    Transaction(id: 't2', title: 'shorts', amount: 30.58, date: DateTime.now()),
+    // Transaction(id: 't1', title: 'shoes', amount: 22.58, date: DateTime.now()),
+    // Transaction(id: 't2', title: 'shorts', amount: 30.58, date: DateTime.now()),
   ];
+  
 
   void _addNewtx(String title, double amount) {
     print('come on');
