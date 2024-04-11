@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         fontFamily: 'Quicksand',
-        
+        errorColor: Colors.red,
       ),
       home: MyHomePage(),
     );
@@ -49,6 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     setState(() {
       _userTranactions.add(newTx);
+    });
+  }
+
+  void deleteTransaction(String id) {
+    setState(() {
+      _userTranactions.removeWhere((tx) => tx.id == id);
     });
   }
 
@@ -89,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_userTranactions),
+            TransactionList(_userTranactions, deleteTransaction),
           ],
         ),
       ),
