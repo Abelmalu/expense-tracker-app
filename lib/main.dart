@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:expense_t/models/transaction.dart';
 import 'package:expense_t/widgets/chart.dart';
 import 'package:expense_t/widgets/new_transaction.dart';
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         fontFamily: 'Quicksand',
+        
       ),
       home: MyHomePage(),
     );
@@ -31,18 +34,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTranactions = [
-    // Transaction(id: 't1', title: 'shoes', amount: 22.58, date: DateTime.now()),
+    Transaction(id: 't1', title: 'shoes', amount: 22.58, date: DateTime.now()),
     // Transaction(id: 't2', title: 'shorts', amount: 30.58, date: DateTime.now()),
   ];
 
-  void _addNewtx(String title, double amount) {
+  void _addNewtx(String title, double amount, DateTime chosenDate) {
     print('come on');
 
     final newTx = Transaction(
       title: title,
       amount: amount,
       id: DateTime.now().toString(),
-      date: DateTime.now(),
+      date: chosenDate,
     );
     setState(() {
       _userTranactions.add(newTx);
