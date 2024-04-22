@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
    List<Transaction> _userTranactions = [
     Transaction(id: 't1', title: 'shoes', amount: 22.58, date: DateTime.now()),
-    // Transaction(id: 't2', title: 'shorts', amount: 30.58, date: DateTime.now()),
+    Transaction(id: 't2', title: 'shorts', amount: 30.58, date: DateTime.now()),
   ];
 
   void _addNewtx(String title, double amount, DateTime chosenDate) {
