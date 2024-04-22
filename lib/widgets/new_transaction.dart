@@ -17,10 +17,12 @@ class _NewTransactionState extends State<NewTransaction> {
 
   void whenSumbitted() {
     if (titlecontroller.text.isEmpty ||
-        double.parse(amountcontroller.text) <= 0 || selectedDate == null) {
+        double.parse(amountcontroller.text) <= 0 ||
+        selectedDate == null) {
       return;
     }
-    widget.addNewTx(titlecontroller.text, double.parse(amountcontroller.text), selectedDate);
+    widget.addNewTx(titlecontroller.text, double.parse(amountcontroller.text),
+        selectedDate);
     Navigator.of(context).pop();
   }
 
@@ -33,16 +35,9 @@ class _NewTransactionState extends State<NewTransaction> {
       if (pickedDate == null) {
         return;
       }
-      setState((){
-
-              selectedDate = pickedDate;
-
+      setState(() {
+        selectedDate = pickedDate;
       });
-
-      
-
-     
-      
     });
   }
 
@@ -63,20 +58,23 @@ class _NewTransactionState extends State<NewTransaction> {
             keyboardType: TextInputType.number,
             onSubmitted: (_) => whenSumbitted(),
           ),
-          Container(
-            height: 16,
-            child: Row(
+           Row(
               children: [
-                Text(selectedDate == null ? 'no date chosen' : DateFormat.yMd().format((selectedDate))),
-                TextButton(
-                  onPressed: () {
-                    presentDatePicker();
-                  },
-                  child: Text('choose date'),
-                )
+               
+                
+                Text(selectedDate == null
+                    ? 'no date chosen'
+                    : DateFormat.yMd().format(selectedDate)),
+
+                     TextButton(
+                child: Text('choose date'),
+                onPressed: () {
+                  presentDatePicker();
+                },
+              ),
               ],
             ),
-          ),
+         
           TextButton(onPressed: whenSumbitted, child: Text('add tranaction')),
         ]),
       ),
