@@ -45,16 +45,21 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                     ),
-                    title: Text(
-                      transactions[index].title,
-                       style: TextStyle(
-                                fontSize: 20,
-                                
-                                fontWeight: FontWeight.bold,
-                              )),
-                   
+                    title: Text(transactions[index].title,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
                     subtitle: Text(
                         DateFormat.yMMMd().format(transactions[index].date)),
+                    trailing: IconButton(
+            icon: Icon(Icons.delete,
+            color: Colors.red,
+            ),
+            onPressed: () {
+              deleteTx(transactions[index].id);
+            },
+          ),
                   ),
                 );
               },
